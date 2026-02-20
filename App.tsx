@@ -4,14 +4,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import "./global.css";
 import { useLanguage } from "./src/hooks/useLanguage";
 import "./src/i18n";
 
@@ -43,7 +39,7 @@ function HomeScreen({ navigation }: any) {
     <View style={styles.container}>
       <CustomHeader navigation={navigation} title={t("home")} />
       <View style={styles.content}>
-        <Text style={styles.title}>{t("helloWorld")}</Text>
+        <Text className="text-orange-600">{t("helloWorld")}</Text>
         <Text style={styles.subtitle}>{t("subtitle")}</Text>
       </View>
       <StatusBar style="auto" />

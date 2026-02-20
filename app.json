@@ -25,6 +25,10 @@
       "output": "single",
       "favicon": "./assets/images/favicon.png"
     },
+    "extra": {
+      "supportsRTL": true,
+      "forcesRTL": true
+    },
     "plugins": [
       [
         "expo-splash-screen",
@@ -38,7 +42,16 @@
           }
         }
       ],
-      "@react-native-community/datetimepicker"
+      "@react-native-community/datetimepicker",
+      [
+        "expo-localization",
+        {
+          "supportedLocales": {
+            "ios": ["en", "ur"],
+            "android": ["en", "ja"]
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": false,

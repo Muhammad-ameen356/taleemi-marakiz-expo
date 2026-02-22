@@ -5,147 +5,62 @@ import {
   DrawerItem,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { SafeAreaView, TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 import { ThemedText } from "../components/ThemedText";
-import { TEACHER } from "../constants/roles";
+import { MARKIZ_NIGRAN, NIGRAN, TEACHER } from "../constants/roles";
+import { DRAWER_SCREENS } from "../constants/screens";
 import { Colors } from "../constants/theme";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { logout } from "../redux/slices/authSlice";
+import type { DrawerParamList } from "../types/navigation";
 
-const Drawer = createDrawerNavigator();
+// Stack imports
+import { AttendanceStack } from "./stacks/AttendanceStack";
+import { ExamReportStack } from "./stacks/ExamReportStack";
+import { LessonStack } from "./stacks/LessonStack";
+import { StudentStack } from "./stacks/StudentStack";
 
-function CustomHeader({
-  navigation,
-  title,
-}: {
-  navigation: any;
-  title: string;
-}) {
-  return (
-    <SafeAreaView className="bg-white border-b border-grayLow pt-12 pb-4">
-      <View className="flex-row items-center justify-between px-4">
-        <TouchableOpacity
-          className="w-10 h-10 items-center justify-center rounded-full bg-gray-50"
-          onPress={() => navigation.toggleDrawer()}
-        >
-          <Ionicons name="menu" size={26} color={Colors.primary} />
-        </TouchableOpacity>
-        <ThemedText className="text-xl font-bold flex-1 text-center text-black">
-          {title}
-        </ThemedText>
-        <TouchableOpacity className="w-10 h-10 items-center justify-center rounded-full bg-gray-50">
-          <Ionicons
-            name="notifications-outline"
-            size={22}
-            color={Colors.primary}
-          />
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
-  );
-}
+// Teacher Screen imports
+import DashboardScreen from "@/screens/teacher/DashboardScreen";
+import DownloadDataScreen from "@/screens/teacher/DownloadDataScreen";
+import MessagesScreen from "@/screens/teacher/MessagesScreen";
+import ProfileScreen from "@/screens/teacher/ProfileScreen";
+import SalaryScreen from "@/screens/teacher/SalaryScreen";
+import SettingsScreen from "@/screens/teacher/SettingsScreen";
 
-function HomeScreen({ navigation }: any) {
-  const { t } = useTranslation("common");
-  const user = useAppSelector((state) => state.auth.user);
+// Nigran Screen imports
+import NigranDashboardScreen from "@/screens/nigran/DashboardScreen";
+import NigranProfileScreen from "@/screens/nigran/ProfileScreen";
+import NigranSettingsScreen from "@/screens/nigran/SettingsScreen";
 
-  console.log(user?.role);
+// Markiz Nigran Screen imports
+import MarkizNigranDashboardScreen from "@/screens/markiz-nigran/DashboardScreen";
+import MarkizNigranProfileScreen from "@/screens/markiz-nigran/ProfileScreen";
+import MarkizNigranSettingsScreen from "@/screens/markiz-nigran/SettingsScreen";
 
-  return (
-    <View className="flex-1 bg-white">
-      <CustomHeader navigation={navigation} title={t("home")} />
-      <View className="flex-1 p-5 items-center justify-center">
-        <View className="bg-gray-50 p-8 rounded-3xl items-center w-full">
-          <Ionicons
-            name="school-outline"
-            size={60}
-            color={Colors.primary}
-            className="mb-4"
-          />
-          <ThemedText className="text-2xl font-bold text-colorPrimary text-center">
-            {t("helloWorld")}
-          </ThemedText>
-          {user && (
-            <ThemedText className="text-base text-gray mt-4 text-center">
-              {t("welcome")}, {user.name} ({user.role})
-            </ThemedText>
-          )}
-        </View>
-      </View>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+// Drawer configuration
 
-function ProfileScreen({ navigation }: any) {
-  const { t } = useTranslation("common");
-  const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.auth.user);
-
-  return (
-    <View className="flex-1 bg-white">
-      <CustomHeader navigation={navigation} title={t("profile")} />
-      <View className="flex-1 p-6">
-        <View className="items-center py-10">
-          <View className="w-24 h-24 bg-colorPrimary rounded-full items-center justify-center mb-4">
-            <ThemedText className="text-white text-4xl font-bold">
-              {user?.name?.charAt(0) || "U"}
-            </ThemedText>
-          </View>
-          <ThemedText className="text-2xl font-bold text-black">
-            {user?.name}
-          </ThemedText>
-          <ThemedText className="text-gray">{user?.role}</ThemedText>
-        </View>
-
-        <View className="bg-gray-50 rounded-2xl p-4 space-y-4 mb-10">
-          <View className="flex-row items-center border-b border-grayLow py-3">
-            <Ionicons
-              name="person-outline"
-              size={20}
-              color={Colors.gray}
-              className="mr-3"
-            />
-            <ThemedText className="text-base ml-4">{user?.name}</ThemedText>
-          </View>
-          <View className="flex-row items-center py-3">
-            <Ionicons
-              name="shield-outline"
-              size={20}
-              color={Colors.gray}
-              className="mr-3"
-            />
-            <ThemedText className="text-base ml-4">{user?.role}</ThemedText>
-          </View>
-        </View>
-
-        <TouchableOpacity
-          className="bg-red-500 p-4 rounded-xl flex-row items-center justify-center mt-auto mb-10"
-          onPress={() => dispatch(logout())}
-        >
-          <Ionicons
-            name="log-out-outline"
-            size={20}
-            color="white"
-            className="mr-2"
-          />
-          <ThemedText className="text-white font-bold text-lg ml-2">
-            {t("logout")}
-          </ThemedText>
-        </TouchableOpacity>
-      </View>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const Drawer = createDrawerNavigator<DrawerParamList>();
 
 function CustomDrawerContent(props: any) {
   const { t } = useTranslation("common");
   const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
+
+  const getRoleLabel = () => {
+    switch (user?.role) {
+      case TEACHER:
+        return "استاد";
+      case NIGRAN:
+        return "نگران";
+      case MARKIZ_NIGRAN:
+        return "مرکز نگران";
+      default:
+        return "صارف";
+    }
+  };
 
   return (
     <View className="flex-1">
@@ -161,6 +76,9 @@ function CustomDrawerContent(props: any) {
           </View>
           <ThemedText className="text-white text-lg font-bold">
             {user?.name}
+          </ThemedText>
+          <ThemedText className="text-white text-sm mt-2">
+            {getRoleLabel()}
           </ThemedText>
         </View>
 
@@ -190,63 +108,277 @@ function CustomDrawerContent(props: any) {
 const DrawerNavigator = () => {
   const { t } = useTranslation("common");
   const user = useAppSelector((state) => state.auth.user);
-  const userTypeId = user?.userTypeId;
 
+  const getDrawerIcon =
+    (iconName: string) =>
+    ({ color, size }: any) => (
+      <Ionicons name={iconName as any} color={color} size={size} />
+    );
+
+  if (user?.role === TEACHER) {
+    return (
+      <Drawer.Navigator
+        drawerContent={(props) => <CustomDrawerContent {...props} />}
+        screenOptions={{
+          headerShown: true,
+          drawerPosition: "left",
+          drawerStyle: {
+            backgroundColor: "white",
+            width: 280,
+          },
+          drawerActiveBackgroundColor: Colors.primary + "10",
+          drawerActiveTintColor: Colors.primary,
+          drawerLabelStyle: {
+            fontFamily: "NotoNastaliqUrdu",
+            textAlign: "right",
+            fontSize: 16,
+          },
+          drawerItemStyle: {
+            borderRadius: 12,
+            paddingHorizontal: 8,
+          },
+        }}
+      >
+        <Drawer.Screen
+          name={DRAWER_SCREENS.DASHBOARD}
+          component={DashboardScreen}
+          options={{
+            title: "صفحہ ڈیش بورڈ",
+            drawerLabel: "صفحہ ڈیش بورڈ",
+            drawerIcon: getDrawerIcon("home-outline"),
+            headerShown: true,
+          }}
+        />
+
+        <Drawer.Screen
+          name={DRAWER_SCREENS.STUDENTS_STACK}
+          component={StudentStack}
+          options={{
+            title: "طلبہ",
+            drawerLabel: "طلبہ",
+            drawerIcon: getDrawerIcon("people-outline"),
+            headerShown: false,
+          }}
+        />
+
+        <Drawer.Screen
+          name={DRAWER_SCREENS.ATTENDANCE_STACK}
+          component={AttendanceStack}
+          options={{
+            title: "حاضری",
+            drawerLabel: "حاضری",
+            drawerIcon: getDrawerIcon("checkmark-circle-outline"),
+            headerShown: false,
+          }}
+        />
+
+        <Drawer.Screen
+          name={DRAWER_SCREENS.LESSON_STACK}
+          component={LessonStack}
+          options={{
+            title: "سبق",
+            drawerLabel: "سبق",
+            drawerIcon: getDrawerIcon("book-outline"),
+            headerShown: false,
+          }}
+        />
+
+        <Drawer.Screen
+          name={DRAWER_SCREENS.SALARY}
+          component={SalaryScreen}
+          options={{
+            title: "تنخواہ",
+            drawerLabel: "تنخواہ",
+            drawerIcon: getDrawerIcon("cash-outline"),
+          }}
+        />
+
+        <Drawer.Screen
+          name={DRAWER_SCREENS.DOWNLOAD_DATA}
+          component={DownloadDataScreen}
+          options={{
+            title: "ڈیٹا ڈاؤن لوڈ کریں",
+            drawerLabel: "ڈیٹا ڈاؤن لوڈ کریں",
+            drawerIcon: getDrawerIcon("download-outline"),
+          }}
+        />
+
+        <Drawer.Screen
+          name={DRAWER_SCREENS.EXAM_REPORT_STACK}
+          component={ExamReportStack}
+          options={{
+            title: "امتحان کی رپورٹ",
+            drawerLabel: "امتحان کی رپورٹ",
+            drawerIcon: getDrawerIcon("document-text-outline"),
+            headerShown: false,
+          }}
+        />
+
+        <Drawer.Screen
+          name={DRAWER_SCREENS.PROFILE}
+          component={ProfileScreen}
+          options={{
+            title: "پروفائل",
+            drawerLabel: "پروفائل",
+            drawerIcon: getDrawerIcon("person-outline"),
+          }}
+        />
+
+        <Drawer.Screen
+          name={DRAWER_SCREENS.MESSAGES}
+          component={MessagesScreen}
+          options={{
+            title: "پیغامات",
+            drawerLabel: "پیغامات",
+            drawerIcon: getDrawerIcon("mail-outline"),
+          }}
+        />
+
+        <Drawer.Screen
+          name={DRAWER_SCREENS.SETTINGS}
+          component={SettingsScreen}
+          options={{
+            title: "ترتیبات",
+            drawerLabel: "ترتیبات",
+            drawerIcon: getDrawerIcon("settings-outline"),
+          }}
+        />
+      </Drawer.Navigator>
+    );
+  }
+
+  // Fallback for other roles or no user
+  if (user?.role === NIGRAN) {
+    return (
+      <Drawer.Navigator
+        drawerContent={(props) => <CustomDrawerContent {...props} />}
+        screenOptions={{
+          headerShown: true,
+          drawerPosition: "left",
+          drawerStyle: {
+            backgroundColor: "white",
+            width: 280,
+          },
+          drawerActiveBackgroundColor: Colors.primary + "10",
+          drawerActiveTintColor: Colors.primary,
+          drawerLabelStyle: {
+            fontFamily: "NotoNastaliqUrdu",
+            textAlign: "right",
+            fontSize: 16,
+          },
+          drawerItemStyle: {
+            borderRadius: 12,
+            paddingHorizontal: 8,
+          },
+        }}
+      >
+        <Drawer.Screen
+          name={DRAWER_SCREENS.DASHBOARD}
+          component={NigranDashboardScreen}
+          options={{
+            title: "صفحہ ڈیش بورڈ",
+            drawerLabel: "صفحہ ڈیش بورڈ",
+            drawerIcon: getDrawerIcon("home-outline"),
+            headerShown: true,
+          }}
+        />
+
+        <Drawer.Screen
+          name={DRAWER_SCREENS.PROFILE}
+          component={NigranProfileScreen}
+          options={{
+            title: "پروفائل",
+            drawerLabel: "پروفائل",
+            drawerIcon: getDrawerIcon("person-outline"),
+          }}
+        />
+
+        <Drawer.Screen
+          name={DRAWER_SCREENS.SETTINGS}
+          component={NigranSettingsScreen}
+          options={{
+            title: "ترتیبات",
+            drawerLabel: "ترتیبات",
+            drawerIcon: getDrawerIcon("settings-outline"),
+          }}
+        />
+      </Drawer.Navigator>
+    );
+  }
+
+  if (user?.role === MARKIZ_NIGRAN) {
+    return (
+      <Drawer.Navigator
+        drawerContent={(props) => <CustomDrawerContent {...props} />}
+        screenOptions={{
+          headerShown: true,
+          drawerPosition: "left",
+          drawerStyle: {
+            backgroundColor: "white",
+            width: 280,
+          },
+          drawerActiveBackgroundColor: Colors.primary + "10",
+          drawerActiveTintColor: Colors.primary,
+          drawerLabelStyle: {
+            fontFamily: "NotoNastaliqUrdu",
+            textAlign: "right",
+            fontSize: 16,
+          },
+          drawerItemStyle: {
+            borderRadius: 12,
+            paddingHorizontal: 8,
+          },
+        }}
+      >
+        <Drawer.Screen
+          name={DRAWER_SCREENS.DASHBOARD}
+          component={MarkizNigranDashboardScreen}
+          options={{
+            title: "صفحہ ڈیش بورڈ",
+            drawerLabel: "صفحہ ڈیش بورڈ",
+            drawerIcon: getDrawerIcon("home-outline"),
+            headerShown: true,
+          }}
+        />
+
+        <Drawer.Screen
+          name={DRAWER_SCREENS.PROFILE}
+          component={MarkizNigranProfileScreen}
+          options={{
+            title: "پروفائل",
+            drawerLabel: "پروفائل",
+            drawerIcon: getDrawerIcon("person-outline"),
+          }}
+        />
+
+        <Drawer.Screen
+          name={DRAWER_SCREENS.SETTINGS}
+          component={MarkizNigranSettingsScreen}
+          options={{
+            title: "ترتیبات",
+            drawerLabel: "ترتیبات",
+            drawerIcon: getDrawerIcon("settings-outline"),
+          }}
+        />
+      </Drawer.Navigator>
+    );
+  }
+
+  // Fallback for unknown roles
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={{
         headerShown: false,
-        drawerPosition: "right",
-        drawerStyle: {
-          backgroundColor: "white",
-          width: 280,
-        },
-        drawerActiveBackgroundColor: Colors.primary + "10", // 10% opacity
-        drawerActiveTintColor: Colors.primary,
-        drawerLabelStyle: {
-          fontFamily: "NotoNastaliqUrdu",
-          textAlign: "right",
-          fontSize: 16,
-        },
-        drawerItemStyle: {
-          borderRadius: 12,
-          paddingHorizontal: 8,
-        },
+        drawerPosition: "left",
       }}
     >
       <Drawer.Screen
-        name="Home"
-        component={HomeScreen}
+        name={DRAWER_SCREENS.DASHBOARD}
+        component={DashboardScreen}
         options={{
-          title: t("home"),
-          drawerIcon: ({ color, size }) => (
-            <Ionicons name="home-outline" color={color} size={size} />
-          ),
-        }}
-      />
-
-      {user?.role === TEACHER && (
-        <Drawer.Screen
-          name="AdminDashboard"
-          component={HomeScreen}
-          options={{
-            title: t("adminDashboard"),
-            drawerIcon: ({ color, size }) => (
-              <Ionicons name="grid-outline" color={color} size={size} />
-            ),
-          }}
-        />
-      )}
-
-      <Drawer.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{
-          title: t("profile"),
-          drawerIcon: ({ color, size }) => (
-            <Ionicons name="person-outline" color={color} size={size} />
-          ),
+          title: "صفحہ ڈیش بورڈ",
+          drawerIcon: getDrawerIcon("home-outline"),
         }}
       />
     </Drawer.Navigator>

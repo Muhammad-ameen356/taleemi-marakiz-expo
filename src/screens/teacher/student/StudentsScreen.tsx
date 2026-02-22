@@ -1,12 +1,7 @@
+import { ThemedText } from "@/components/ThemedText";
 import type { StudentStackParamList } from "@/types/navigation";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import {
-    FlatList,
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View,
-} from "react-native";
+import { FlatList, ScrollView, TouchableOpacity, View } from "react-native";
 
 type StudentsScreenProps = NativeStackScreenProps<
   StudentStackParamList,
@@ -37,9 +32,13 @@ export default function StudentsScreen({ navigation }: StudentsScreenProps) {
       }
       className="bg-gray-100 p-4 rounded-lg mb-3"
     >
-      <Text className="font-semibold text-lg">{item.name}</Text>
-      <Text className="text-gray-600 text-sm">رول نمبر: {item.rollNumber}</Text>
-      <Text className="text-gray-600 text-sm">کلاس: {item.class}</Text>
+      <ThemedText className="font-semibold text-lg">{item.name}</ThemedText>
+      <ThemedText className="text-gray-600 text-sm">
+        رول نمبر: {item.rollNumber}
+      </ThemedText>
+      <ThemedText className="text-gray-600 text-sm">
+        کلاس: {item.class}
+      </ThemedText>
     </TouchableOpacity>
   );
 
@@ -47,19 +46,21 @@ export default function StudentsScreen({ navigation }: StudentsScreenProps) {
     <ScrollView className="flex-1 bg-white">
       <View className="flex-1 p-4">
         <View className="mb-6">
-          <Text className="text-2xl font-bold text-blue-600 mb-2">
+          <ThemedText className="text-2xl  text-blue-600 mb-2">
             طلبہ کی فہرست
-          </Text>
-          <Text className="text-gray-600">کل طلبہ: {mockStudents.length}</Text>
+          </ThemedText>
+          <ThemedText className="text-gray-600">
+            کل طلبہ: {mockStudents.length}
+          </ThemedText>
         </View>
 
         <TouchableOpacity
           onPress={() => navigation.navigate("AddEditStudent", { mode: "add" })}
           className="bg-blue-600 p-4 rounded-lg mb-6 items-center"
         >
-          <Text className="text-white font-semibold text-lg">
+          <ThemedText className="text-white font-semibold text-lg">
             نیا طالب علم شامل کریں
-          </Text>
+          </ThemedText>
         </TouchableOpacity>
 
         <FlatList

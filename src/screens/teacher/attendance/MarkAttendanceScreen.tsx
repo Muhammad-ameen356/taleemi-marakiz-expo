@@ -1,12 +1,6 @@
 import type { AttendanceStackParamList } from "@/types/navigation";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import {
-    FlatList,
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View,
-} from "react-native";
+import { FlatList, ScrollView, TouchableOpacity, View } from "react-native";
 
 type MarkAttendanceScreenProps = NativeStackScreenProps<
   AttendanceStackParamList,
@@ -48,9 +42,7 @@ export default function MarkAttendanceScreen({
     <ScrollView className="flex-1 bg-white">
       <View className="flex-1 p-4">
         <View className="mb-6">
-          <Text className="text-2xl font-bold text-blue-600 mb-2">
-            حاضری درج کریں
-          </Text>
+          <Text className="text-2xl  text-blue-600 mb-2">حاضری درج کریں</Text>
           <Text className="text-gray-600">تاریخ: {date}</Text>
           <Text className="text-gray-600">کلاس ID: {classId}</Text>
         </View>

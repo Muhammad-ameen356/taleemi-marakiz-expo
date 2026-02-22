@@ -2,7 +2,7 @@
 
 ## Important 👋
 
-1. Don't use font-bold or similar property, its disturb the applied font
+1. Don't use font--bold or similar property, its disturb the applied font
 2. Use Custom Component like ThemedText instead of Text from React-Native
 3. Mobile record isSynced = true OR
 4. Server updatedAt is newer than mobile updatedAt

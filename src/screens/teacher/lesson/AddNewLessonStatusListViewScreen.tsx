@@ -2,11 +2,11 @@ import type { LessonStackParamList } from "@/types/navigation";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useState } from "react";
 import {
-    ScrollView,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 type AddNewLessonStatusScreenProps = NativeStackScreenProps<
@@ -31,7 +31,7 @@ export default function AddNewLessonStatusListViewScreen({
   return (
     <ScrollView className="flex-1 bg-white">
       <View className="flex-1 p-4">
-        <Text className="text-2xl font-bold text-blue-600 mb-6">
+        <Text className="text-2xl  text-blue-600 mb-6">
           {lessonId ? "سبق میں ترمیم کریں" : "نیا سبق شامل کریں"}
         </Text>
 

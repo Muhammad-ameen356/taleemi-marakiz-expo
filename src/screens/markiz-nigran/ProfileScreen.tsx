@@ -21,11 +21,11 @@ const MarkizNigranProfileScreen: React.FC<Props> = () => {
       <View className="p-4">
         <View className="items-center mb-6">
           <View className="w-24 h-24 bg-colorPrimary rounded-full items-center justify-center mb-4">
-            <ThemedText className="text-white text-4xl font-bold">
+            <ThemedText className="text-white text-4xl ">
               {user.name.charAt(0)}
             </ThemedText>
           </View>
-          <ThemedText className="text-2xl font-bold">{user.name}</ThemedText>
+          <ThemedText className="text-2xl ">{user.name}</ThemedText>
           <ThemedText className="text-sm text-gray mt-1">
             {user.role}
           </ThemedText>

@@ -70,13 +70,11 @@ function CustomDrawerContent(props: any) {
       >
         <View className="bg-colorPrimary p-10 items-center justify-center mb-4">
           <View className="w-20 h-20 bg-white rounded-full items-center justify-center mb-4">
-            <ThemedText className="text-colorPrimary text-3xl font-bold">
+            <ThemedText className="text-colorPrimary text-3xl ">
               {user?.name?.charAt(0) || "U"}
             </ThemedText>
           </View>
-          <ThemedText className="text-white text-lg font-bold">
-            {user?.name}
-          </ThemedText>
+          <ThemedText className="text-white text-lg ">{user?.name}</ThemedText>
           <ThemedText className="text-white text-sm mt-2">
             {getRoleLabel()}
           </ThemedText>
@@ -136,6 +134,10 @@ const DrawerNavigator = () => {
           drawerItemStyle: {
             borderRadius: 12,
             paddingHorizontal: 8,
+          },
+          headerTitleStyle: {
+            fontFamily: "NotoNastaliqUrdu",
+            fontSize: 18,
           },
         }}
       >
@@ -270,6 +272,10 @@ const DrawerNavigator = () => {
             borderRadius: 12,
             paddingHorizontal: 8,
           },
+          headerTitleStyle: {
+            fontFamily: "NotoNastaliqUrdu",
+            fontSize: 18,
+          },
         }}
       >
         <Drawer.Screen
@@ -327,6 +333,10 @@ const DrawerNavigator = () => {
           drawerItemStyle: {
             borderRadius: 12,
             paddingHorizontal: 8,
+          },
+          headerTitleStyle: {
+            fontFamily: "NotoNastaliqUrdu",
+            fontSize: 18,
           },
         }}
       >

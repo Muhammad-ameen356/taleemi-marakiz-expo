@@ -16,9 +16,7 @@ export default function ExamReportDetailScreen({
     <ScrollView className="flex-1 bg-white">
       <View className="flex-1 p-4">
         <View className="mb-6">
-          <Text className="text-2xl font-bold text-blue-600 mb-2">
-            امتحان کی تفصیل
-          </Text>
+          <Text className="text-2xl  text-blue-600 mb-2">امتحان کی تفصیل</Text>
           <Text className="text-gray-600">امتحان ID: {examId}</Text>
         </View>
 
@@ -38,7 +36,7 @@ export default function ExamReportDetailScreen({
 
         <View className="bg-yellow-100 p-4 rounded-lg">
           <Text className="font-semibold text-lg mb-2">کامیابی کی شرح</Text>
-          <Text className="text-2xl font-bold text-blue-600">86.67%</Text>
+          <Text className="text-2xl  text-blue-600">86.67%</Text>
         </View>
       </View>
     </ScrollView>

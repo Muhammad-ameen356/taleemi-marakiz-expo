@@ -19,7 +19,7 @@ const NigranDashboardScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <ScrollView className="flex-1 bg-white">
       <View className="p-4">
-        <ThemedText className="text-2xl font-bold mb-6">
+        <ThemedText className="text-2xl  mb-6">
           {t("welcome")} - نگران
         </ThemedText>
 

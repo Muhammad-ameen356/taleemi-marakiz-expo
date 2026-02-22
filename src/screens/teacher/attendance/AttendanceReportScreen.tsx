@@ -16,9 +16,7 @@ export default function AttendanceReportScreen({
     <ScrollView className="flex-1 bg-white">
       <View className="flex-1 p-4">
         <View className="mb-6">
-          <Text className="text-2xl font-bold text-blue-600 mb-2">
-            حاضری رپورٹ
-          </Text>
+          <Text className="text-2xl  text-blue-600 mb-2">حاضری رپورٹ</Text>
           <Text className="text-gray-600">کلاس ID: {classId}</Text>
         </View>
 

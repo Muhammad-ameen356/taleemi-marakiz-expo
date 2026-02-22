@@ -21,7 +21,8 @@ export function StudentStack() {
         },
         headerTintColor: "#fff",
         headerTitleStyle: {
-          fontWeight: "bold",
+          fontFamily: "NotoNastaliqUrdu",
+          fontSize: 18,
         },
         headerLeft: () => (
           <Ionicons

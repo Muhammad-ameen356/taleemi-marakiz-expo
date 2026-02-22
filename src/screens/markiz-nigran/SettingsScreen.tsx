@@ -20,9 +20,7 @@ const MarkizNigranSettingsScreen: React.FC<Props> = () => {
   return (
     <ScrollView className="flex-1 bg-white">
       <View className="p-4">
-        <ThemedText className="text-2xl font-bold mb-6">
-          {t("settings")}
-        </ThemedText>
+        <ThemedText className="text-2xl  mb-6">{t("settings")}</ThemedText>
 
         <View className="space-y-2">
           {settings.map((setting, index) => (

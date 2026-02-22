@@ -23,7 +23,8 @@ export function ExamReportStack() {
         },
         headerTintColor: "#fff",
         headerTitleStyle: {
-          fontWeight: "bold",
+          fontFamily: "NotoNastaliqUrdu",
+          fontSize: 18,
         },
         headerLeft: () => (
           <Ionicons

@@ -49,9 +49,7 @@ const LoginScreen = () => {
           <View className="items-center mb-10">
             {/* Logo could go here */}
             <View className="w-20 h-20 bg-colorPrimary rounded-2xl items-center justify-center mb-4">
-              <ThemedText className="text-white text-3xl font-bold">
-                TM
-              </ThemedText>
+              <ThemedText className="text-white text-3xl ">TM</ThemedText>
             </View>
             <ThemedText className="text-3xl text-colorPrimary">
               {t("login")}

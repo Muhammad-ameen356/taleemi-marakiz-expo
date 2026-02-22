@@ -1,12 +1,7 @@
+import { ThemedText } from "@/components/ThemedText";
 import type { AttendanceStackParamList } from "@/types/navigation";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import {
-    FlatList,
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View,
-} from "react-native";
+import { FlatList, ScrollView, TouchableOpacity, View } from "react-native";
 
 type AttendanceScreenProps = NativeStackScreenProps<
   AttendanceStackParamList,
@@ -38,10 +33,10 @@ export default function AttendanceScreen({
       }
       className="bg-blue-100 p-4 rounded-lg mb-3"
     >
-      <Text className="font-semibold text-lg">{item.name}</Text>
-      <Text className="text-gray-600 text-sm">
+      <ThemedText className="font-semibold text-lg">{item.name}</ThemedText>
+      <ThemedText className="text-gray-600 text-sm">
         کل طلبہ: {item.totalStudents}
-      </Text>
+      </ThemedText>
     </TouchableOpacity>
   );
 
@@ -49,8 +44,12 @@ export default function AttendanceScreen({
     <ScrollView className="flex-1 bg-white">
       <View className="flex-1 p-4">
         <View className="mb-6">
-          <Text className="text-2xl font-bold text-blue-600 mb-2">حاضری</Text>
-          <Text className="text-gray-600">اپنی کلاسز کی حاضری منتخب کریں</Text>
+          <ThemedText className="text-2xl  text-blue-600 mb-2">
+            حاضری
+          </ThemedText>
+          <ThemedText className="text-gray-600">
+            اپنی کلاسز کی حاضری منتخب کریں
+          </ThemedText>
         </View>
 
         <FlatList

@@ -1,11 +1,11 @@
 import type { LessonStackParamList } from "@/types/navigation";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import {
-    FlatList,
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View,
+  FlatList,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 type LessonStatusListScreenProps = NativeStackScreenProps<
@@ -55,9 +55,7 @@ export default function LessonStatusListViewScreen({
     <ScrollView className="flex-1 bg-white">
       <View className="flex-1 p-4">
         <View className="mb-6">
-          <Text className="text-2xl font-bold text-blue-600 mb-2">
-            سبق کی حالت
-          </Text>
+          <Text className="text-2xl  text-blue-600 mb-2">سبق کی حالت</Text>
           <Text className="text-gray-600">تمام سبق کی حالت دیکھیں</Text>
         </View>
 

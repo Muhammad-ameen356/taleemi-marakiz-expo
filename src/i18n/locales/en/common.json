@@ -23,5 +23,11 @@
   "language": "Language",
   "settings": "Settings",
   "about": "About Us",
-  "noData": "No data available"
+  "noData": "No data available",
+  "username": "Username",
+  "password": "Password",
+  "loginFailed": "Login failed. Please check your credentials.",
+  "fillAllFields": "Please fill all fields.",
+  "profile": "Profile",
+  "adminDashboard": "Admin Dashboard"
 }

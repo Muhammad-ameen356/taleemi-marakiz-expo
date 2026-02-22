@@ -2,6 +2,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import authReducer from './slices/authSlice';
+import { injectStore } from '../api/client';
 
 const persistConfig = {
   key: 'root',
@@ -22,6 +23,9 @@ export const store = configureStore({
       serializableCheck: false, // Disable serializable check for redux-persist
     }),
 });
+
+// Inject store into api client to avoid circular dependency
+injectStore(store);
 
 export const persistor = persistStore(store);
 
